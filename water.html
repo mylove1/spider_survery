@@ -1,0 +1,1599 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+
+
+
+<script>
+	var basePath = '';
+	var common={companyDetailUrl:'/company_info_companyNo.html',staticResource:'http://static.shuidixy.com'};
+</script>
+
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<title>上海众享投资管理有限公司-企业信用查询-水滴信用</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta http-equiv="pragma" content="no-cache" />
+	<meta http-equiv="cache-control" content="no-cache" />
+	<meta http-equiv="expires" content="0" />
+	<meta name="renderer" content="webkit|ie-comp|ie-stand" />
+	<meta http-equiv="keywords" content="企业查询,中小企业,三资企业,民营企业,私营企业,黄页大全" />
+	<meta http-equiv="description" content="水滴信用提供中小企业,民营企业信息查询,私营企业信用查询服务。" />
+	<link href="http://static.shuidixy.com/css/style.css?v=20170126" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="http://static.shuidixy.com/js/lib/jquery-1.7.1.min.js"></script>
+	<script type="text/javascript" src="http://static.shuidixy.com/js/common/common.string.js?v=20170126"></script>
+	<script type="text/javascript" src="http://static.shuidixy.com/js/common/common.js?v=20170126"></script>
+
+</head>
+
+<body class="sd_container">
+	
+
+
+<!-- header -->
+<div class="sd_banner" id="headerTurnTo">
+	<div class="sd_company_container">
+		<div class="sd_header">
+			<a class="sdLogo" href="/">
+				<img alt="" src="http://static.shuidixy.com/images/sd-logo14.png" style="border-right: 1px solid #5b5b5b; padding-right: 15px; margin-right: 12px;">
+				<img src="http://static.shuidixy.com/images/14top.png">
+			</a>
+			<div class="sd_header_right">
+				
+				
+					
+					
+						<div class="sd_header_haver" id="noLogin">
+							<div class="sd_header_zd">
+								<a href="/user/tologin" class="sd_header01 sd_header_reg">登录</a>
+								<a href="/user/toregister" class="sd_header01 sd_header_reg" style="background-color:#00ae66;">注册</a>
+							</div>
+						</div>
+					
+				
+				
+			</div>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var header_mouseOnUser = false;
+	var showUserCenter = function() {
+		header_mouseOnUser = true
+		document.getElementById("userCenterDiv").style.display = 'block';
+	}
+	var hideUserCenter = function() {
+		header_mouseOnUser = false;
+		window
+				.setTimeout(
+				function() {
+					if (!header_mouseOnUser) {
+						document.getElementById("userCenterDiv").style.display = 'none';
+					}
+				}, 300);
+	}
+</script>
+
+	
+	
+
+
+
+
+<script>
+	var basePath = '';
+	var common={companyDetailUrl:'/company_info_companyNo.html',staticResource:'http://static.shuidixy.com'};
+</script>
+<!-- common search -->
+<div class="sd_company_container">
+       <div class="sd_form_search">
+           <div class="sd_form_search_input">
+               <form action="/search" method="get" id="searchForm">
+                   <input id="searchkey" class="input-lg" type="text"  value="上海众享投资管理有限公司"
+                    autocomplete="off" name="key" placeholder="可以按企业名称、注册号、法人、股东、高管、品牌查询" style="font-size:16px;"/>
+                   <input id="searchTypeInput" type="hidden" name="searchType" value="all" />
+                   <input id="provinceCodeInput" type="hidden" name="provinceCode" value="" />
+                   <input id="capitalNumberInput" type="hidden" name="capitalNumber" value="" />
+                   <input id="establishDurationInput" type="hidden" name="establishDuration" value="" />
+                   <input id="secondLevelIndustryTypeInput" type="hidden" name="secondLevelIndustryType" value="" />
+                   <input id="sortInput" type="hidden" name="sort" value="" />
+                   <input id="firstLevelIndustryTypeInput" type="hidden"  value="" />
+                   <input id="entryInput" type="hidden" name="entry" value="0" />
+                   <input id="markInput" type="hidden" name="mark" value="" />
+                   <input id="totalInput" type="hidden" name="total" value="28" />
+                   <input id="npageInput" type="hidden" name="npage" value="0" />
+                   <span class="input-group-btn01">
+                   <button class="btn btn-primary" type="button" id="searchBtn" ></button>
+                   </span>
+               </form>
+           </div>
+           <!-- 热搜词 -->
+           <p class="sd_form_search_p" id="hotKeyWordsDiv"> </p>
+       </div>
+</div>
+<script type="text/javascript">
+
+/**
+ * 表单提交
+ */
+var searchFormSubmit=function(pageNo){
+	var key=$("#searchkey").val().trim();
+	var entry=$("#entryInput").val();
+	if((entry!="1" && entry!="2") && (key=="" || key.indexOf("*") >= 0)){
+		$("#searchkey").val("");
+		$("#searchkey").attr("style","border: red 2px solid;font-size:16px;");
+		return;
+	}else{
+		if(typeof(pageNo)=='undefined' || pageNo==null || isNaN(parseInt(pageNo))){
+			pageNo=0;
+		}
+		$("#npageInput").val(pageNo);
+		$mark=$("#pageListParams input[name=customParam"+pageNo+"]").val();
+		$("#markInput").val($mark);
+		if(pageNo==0){
+			$("#totalInput").val("");
+		}
+		$("#searchForm").submit();
+	}
+}
+
+/**
+ * 单击搜索，清空里面的查询条件
+ */
+var searchBtnFn=function(){
+	if($("#entryInput").val()!='1'){
+		$("#provinceCodeInput").val("");
+	}
+	if($("#entryInput").val()!='2'){
+		$("#secondLevelIndustryTypeInput").val("");
+	}
+	$("#searchTypeInput").val("all");
+	$("#sortInput").val("");
+	$("#npageInput").val("0");
+	$("#capitalNumberInput").val("");
+	$("#establishDurationInput").val("");
+	$("#markInput").val("");
+	$("#totalInput").val("");
+	
+	searchFormSubmit();
+}
+
+
+$("#searchBtn").click(searchBtnFn);
+$("#searchkey").keydown(function(e){
+	if(e && e.keyCode==13){
+		searchBtnFn();
+	}
+});
+
+/**
+ * 加载'热搜词'的ajax回调函数
+ */
+
+var loadHotWordCallback=function(result){
+	var opacity = "";
+	//是否有数据
+	if(result.statusCode == 1 && result.data.length > 0){
+		var list = result.data;
+		var inHtml = "<span class='sd_index_hot_span'>热搜词：</span>";
+		for(var i = 0; i<list.length; i++){
+			var hot = list[i];
+			if(i > 1){
+				var m = list.length>10?list.length:10;
+				var o = 1 - (i-1) / m;
+				opacity = "style=\"filter:alpha(opacity={0});-moz-opacity:{1};opacity:{1};\"".format(o * 100, o);
+			}else{
+				opacity = "";
+			}
+			inHtml += "<a href=\"{0}\" {1}>{2}</a>".format(hot.hotUrl, opacity, hot.hotWord);
+		}
+		$("#hotKeyWordsDiv").html(inHtml);
+		$("#hotKeyWordsDiv").fadeIn();
+	}else{
+		$("#hotKeyWordsDiv").fadeOut();
+	}
+}
+	
+/**
+ * 加载热搜词的ajax函数
+ */
+var loadHotWordAjax=function(){
+	var url=basePath + "/company/hotkeyword/list";
+	Pingan.ajax(new AjaxObj(url,null,loadHotWordCallback));
+}
+//加载热搜词	
+loadHotWordAjax();
+
+$("#searchkey").focus(function(){
+	$("#searchkey").attr("style","font-size:16px;")
+});
+</script>
+
+    
+    <div class="sd_company_container" style="margin-top: 20px;">
+    	<div class="sd_left">
+        	<div class="sd_left_block">
+            	<div class="sd_left_block_tit">
+                	<b>智能筛选</b>
+                    <span class="sd_left_tit_up" id="searchConditionBtn">收起筛选<i></i></span>
+                </div>
+                <div class="or_left_silde" id="searchCondition">
+                	
+	                    <div class="or_category">
+	                        <div class="or_sl_key">搜索范围</div>
+	                        <div class="or_sl_value">
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'all')" 
+	                        			class="typeall"  inputId="searchTypeInput">
+	                        			全部
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'companyContent')" 
+	                        			class="typecompanyContent"  inputId="searchTypeInput">
+	                        			企业
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'personContent')" 
+	                        			class="typepersonContent"  inputId="searchTypeInput">
+	                        			法人/股东
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'employeeContent')" 
+	                        			class="typeemployeeContent"  inputId="searchTypeInput">
+	                        			董高监
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'addressContent')" 
+	                        			class="typeaddressContent"  inputId="searchTypeInput">
+	                        			地址
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'scopeContent')" 
+	                        			class="typescopeContent"  inputId="searchTypeInput">
+	                        			经营范围
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'trademarkContent')" 
+	                        			class="typetrademarkContent"  inputId="searchTypeInput">
+	                        			品牌产品
+	                        		</a>
+	                        	
+	                        </div>
+	                    </div>
+	                    <div class="or_category">
+	                        <div class="or_sl_key">注册资本</div>
+	                        <div class="or_sl_value">
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'0')"  
+	                        			class="capital0" inputId="capitalNumberInput">
+	                        			全部
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'1')"  
+	                        			class="capital1" inputId="capitalNumberInput">
+	                        			100万以下
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'2')"  
+	                        			class="capital2" inputId="capitalNumberInput">
+	                        			100-200万
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'3')"  
+	                        			class="capital3" inputId="capitalNumberInput">
+	                        			200-500万
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'4')"  
+	                        			class="capital4" inputId="capitalNumberInput">
+	                        			500-1000万
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'5')"  
+	                        			class="capital5" inputId="capitalNumberInput">
+	                        			1000万以上
+	                        		</a>
+	                        	
+	                           
+	                        </div>
+	                    </div>
+	                    <div class="or_category">
+	                        <div class="or_sl_key">成立年限</div>
+	                        <div class="or_sl_value">
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'0')"  
+	                        			class="duration0" inputId="establishDurationInput">
+	                        			全部
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'1')"  
+	                        			class="duration1" inputId="establishDurationInput">
+	                        			1年以内
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'2')"  
+	                        			class="duration2" inputId="establishDurationInput">
+	                        			1-5年
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'3')"  
+	                        			class="duration3" inputId="establishDurationInput">
+	                        			5-10年
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'4')"  
+	                        			class="duration4" inputId="establishDurationInput">
+	                        			10-15年
+	                        		</a>
+	                        	
+	                        		<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'5')"  
+	                        			class="duration5" inputId="establishDurationInput">
+	                        			15年以上
+	                        		</a>
+	                        	
+	                          
+	                        </div>
+	                    </div>
+	                    <div class="or_category">
+	                        <div class="or_sl_key">省份区域</div>
+	                        <div class="or_sl_value">
+	                        	
+	                        		
+	                        			
+	                        				<span>
+	                        					<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'0')"
+	                        						class="pro0" inputId="provinceCodeInput">
+	                        						全部
+	                        					</a>
+	                        				</span>
+	                        			
+	                        			
+	                        		
+	                        	
+	                        		
+	                        			
+	                        			
+	                        				<span>
+		                        				<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'1019')"
+		                        					class="pro1019" inputId="provinceCodeInput">
+		                        					安徽
+		                        				</a>
+	                        				</span>
+	                        			
+	                        		
+	                        	
+	                        		
+	                        			
+	                        			
+	                        				<span>
+		                        				<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'1013')"
+		                        					class="pro1013" inputId="provinceCodeInput">
+		                        					北京
+		                        				</a>
+	                        				</span>
+	                        			
+	                        		
+	                        	
+	                        		
+	                        			
+	                        			
+	                        				<span>
+		                        				<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'1023')"
+		                        					class="pro1023" inputId="provinceCodeInput">
+		                        					重庆
+		                        				</a>
+	                        				</span>
+	                        			
+	                        		
+	                        	
+	                        		
+	                        			
+	                        			
+	                        				<span>
+		                        				<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'1009')"
+		                        					class="pro1009" inputId="provinceCodeInput">
+		                        					福建
+		                        				</a>
+	                        				</span>
+	                        			
+	                        		
+	                        	
+	                        		
+	                        			
+	                        			
+	                        				<span>
+		                        				<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'1002')"
+		                        					class="pro1002" inputId="provinceCodeInput">
+		                        					广东
+		                        				</a>
+	                        				</span>
+	                        			
+	                        		
+	                        	
+	                        		
+	                        			
+	                        			
+	                        				<span>
+		                        				<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'1017')"
+		                        					class="pro1017" inputId="provinceCodeInput">
+		                        					甘肃
+		                        				</a>
+	                        				</span>
+	                        			
+	                        		
+	                        	
+	                        		
+	                        			
+	                        			
+	                        				<span>
+		                        				<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'1030')"
+		                        					class="pro1030" inputId="provinceCodeInput">
+		                        					广西
+		                        				</a>
+	                        				</span>
+	                        			
+	                        		
+	                        	
+	                        		
+	                        			
+	                        			
+	                        				<span>
+		                        				<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'1026')"
+		                        					class="pro1026" inputId="provinceCodeInput">
+		                        					贵州
+		                        				</a>
+	                        				</span>
+	                        			
+	                        		
+	                        	
+	                        		
+	                        			
+	                        			
+	                        				<span>
+		                        				<a href="javascript:void(0);" onclick="searchResult.Event.search(this,'1001')"
+		                        					class="pro1001" inputId="provinceCodeInput">
+		                        					河北
+		                        				</a>
+	                        				</span>
+	                        			
+	                        		
+	                        	
+	                        	
+	                        	<div class="provinceMore" style="display:none;">
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1014" onclick="searchResult.Event.search(this,'1014')"
+			                        			 inputId="provinceCodeInput">
+			                        			湖北
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1005" onclick="searchResult.Event.search(this,'1005')"
+			                        			 inputId="provinceCodeInput">
+			                        			黑龙江
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1025" onclick="searchResult.Event.search(this,'1025')"
+			                        			 inputId="provinceCodeInput">
+			                        			海南
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1021" onclick="searchResult.Event.search(this,'1021')"
+			                        			 inputId="provinceCodeInput">
+			                        			河南
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1024" onclick="searchResult.Event.search(this,'1024')"
+			                        			 inputId="provinceCodeInput">
+			                        			湖南
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1006" onclick="searchResult.Event.search(this,'1006')"
+			                        			 inputId="provinceCodeInput">
+			                        			江苏
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1011" onclick="searchResult.Event.search(this,'1011')"
+			                        			 inputId="provinceCodeInput">
+			                        			吉林
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1029" onclick="searchResult.Event.search(this,'1029')"
+			                        			 inputId="provinceCodeInput">
+			                        			江西
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1003" onclick="searchResult.Event.search(this,'1003')"
+			                        			 inputId="provinceCodeInput">
+			                        			辽宁
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1008" onclick="searchResult.Event.search(this,'1008')"
+			                        			 inputId="provinceCodeInput">
+			                        			宁夏
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1032" onclick="searchResult.Event.search(this,'1032')"
+			                        			 inputId="provinceCodeInput">
+			                        			内蒙古
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1028" onclick="searchResult.Event.search(this,'1028')"
+			                        			 inputId="provinceCodeInput">
+			                        			青海
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1015" onclick="searchResult.Event.search(this,'1015')"
+			                        			 inputId="provinceCodeInput">
+			                        			上海
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1016" onclick="searchResult.Event.search(this,'1016')"
+			                        			 inputId="provinceCodeInput">
+			                        			山东
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1007" onclick="searchResult.Event.search(this,'1007')"
+			                        			 inputId="provinceCodeInput">
+			                        			四川
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1018" onclick="searchResult.Event.search(this,'1018')"
+			                        			 inputId="provinceCodeInput">
+			                        			山西
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1010" onclick="searchResult.Event.search(this,'1010')"
+			                        			 inputId="provinceCodeInput">
+			                        			陕西
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1020" onclick="searchResult.Event.search(this,'1020')"
+			                        			 inputId="provinceCodeInput">
+			                        			天津
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1027" onclick="searchResult.Event.search(this,'1027')"
+			                        			 inputId="provinceCodeInput">
+			                        			西藏
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1031" onclick="searchResult.Event.search(this,'1031')"
+			                        			 inputId="provinceCodeInput">
+			                        			新疆
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1022" onclick="searchResult.Event.search(this,'1022')"
+			                        			 inputId="provinceCodeInput">
+			                        			云南
+			                        		</a>
+			                        	</span>
+		                        	
+		                        		<span>
+			                        		<a href="javascript:void(0);" class="pro1004" onclick="searchResult.Event.search(this,'1004')"
+			                        			 inputId="provinceCodeInput">
+			                        			浙江
+			                        		</a>
+			                        	</span>
+		                        	
+	                        	</div>
+	                        </div>
+		                        	
+	                        <div class="or_sl_more" id="provinceMoreBtn">更多<i></i></div>
+	                    </div>
+                    
+                    
+                    
+                   
+					
+                </div>
+            </div>
+            <div class="sd_left_block">
+            	<div class="sd_left_ss">
+            		
+            			搜索<span class="sd_left_ss_name">"上海众享投资管理有限公司"</span>
+            		
+            		为你找到
+            		<span class="sd_left_ss_number">28</span>
+            		家符合条件的企业
+            	</div>
+            	
+                <div class="sd_left_hide">
+                	<div class="sd_left_deep">
+                    	<span class="sd_left_deep_default">
+                            <span class="sd_left_deep_value" id="sortBtn" style="cursor:pointer;">默认排序<i></i></span>
+                          	<div class="sd_left_types" style="display:none;z-index:100;" id="sortDiv">
+                            	
+                           			<div class="sd_left_deep_lists">
+                           				
+                           					
+                           					
+                           						<span style="cursor:auto;">默认排序</span>
+                           					
+                           				
+                           				
+                           			</div>
+                            	
+                           			<div class="sd_left_deep_lists">
+                           				
+                           					
+                           						<span onclick="searchResult.Event.search(this,1)" inputId="sortInput">注册资本升序</span>
+                           					
+                           					
+                           				
+                           				
+                           			</div>
+                            	
+                           			<div class="sd_left_deep_lists">
+                           				
+                           					
+                           						<span onclick="searchResult.Event.search(this,2)" inputId="sortInput">注册资本降序</span>
+                           					
+                           					
+                           				
+                           				
+                           			</div>
+                            	
+                           			<div class="sd_left_deep_lists">
+                           				
+                           					
+                           						<span onclick="searchResult.Event.search(this,3)" inputId="sortInput">成立年限升序</span>
+                           					
+                           					
+                           				
+                           				
+                           			</div>
+                            	
+                           			<div class="sd_left_deep_lists">
+                           				
+                           					
+                           						<span onclick="searchResult.Event.search(this,4)" inputId="sortInput">成立年限降序</span>
+                           					
+                           					
+                           				
+                           				
+                           			</div>
+                            	
+                            </div>            
+                        </span>
+                        <span class="sd_left_deep_name">公司</span>
+                        <span class="sd_left_deep_state">状态</span>
+                       <!--  <span class="sd_left_deep_follow">关注</span>
+                        <span class="sd_left_deep_score">评分</span> -->
+                    </div>
+                    
+                    
+                    	
+                    		
+			                    <div class="or_search_list">
+			                    	<div class="or_search_row or_row_w">
+			                        	<div class="or_search_row_img">
+			                                <div class="or_search_row_logo">
+			                                	
+			                                	
+			                                		<img src="http://static.shuidixy.com/images/none-img.png" /><span />
+			                                	
+			                                	
+			                                	
+			                                    
+			                                </div>
+			                            </div>
+			                            <div class="or_search_row_content">
+			                            	<a href="/company_info_55201919257587825443866039078164.html" target="_blank">
+			                            		中国太平洋人寿保险股份<em>有限公司</em>
+			                            	</a>
+			                                <div class="or_search_row_company">
+			                                    <span>法定代表人：徐敬惠</span>
+			                                    <span>成立时间：2001-11-09</span>
+			                                    <span>注册资本： 842000.00万元人民币 </span>
+			                                   
+			                                </div>
+			                                <!-- 不同搜索类型显示不同信息 begin -->
+			                                <!-- type all -->
+			                                
+			                                	
+			                                	
+				                                	<div class="or_search_row_history">
+					                                	<span>股东：<em>上海海</em>烟<em>投资管理有限公司</em></span>
+					                                </div>
+			                                	
+			                                
+			                                <!-- type 企业 -->
+			                                
+			                                 <!-- type 法人股东 -->
+			                                
+			                                
+			                                <!-- type 高管 -->
+			                                
+			                                
+			                                <!-- type 经营范围 -->
+			                                
+			                                
+			                                <!-- type 品牌 -->
+			                                
+			                                 <!-- 不同搜索类型显示不同信息 end -->
+			                                <!-- <div class="or_search_row_function">
+			                                	<span class="or_comment">评论（10）</span>
+			                                    <span class="or_browse">浏览（314）</span>
+			                                </div> -->
+			                            </div>
+			                            <div class="or_search_row_type">
+			                            	<p style="cursor:text;"><small class="searchbadge">在营</small></p>
+			                            </div>
+			                            <!-- <div class="sd_left_deep_follow">
+			                            	<div class="or_is_follow or_no_follow"></div>
+			                            </div> -->
+			                           
+			                        </div>
+			                    </div>
+	                    	
+			                    <div class="or_search_list">
+			                    	<div class="or_search_row or_row_w">
+			                        	<div class="or_search_row_img">
+			                                <div class="or_search_row_logo">
+			                                	
+			                                	
+			                                		<img src="http://static.shuidixy.com/images/none-img.png" /><span />
+			                                	
+			                                	
+			                                	
+			                                    
+			                                </div>
+			                            </div>
+			                            <div class="or_search_row_content">
+			                            	<a href="/company_info_79101648663044573331525099675075.html" target="_blank">
+			                            		日出东方太阳能股份<em>有限公司</em>
+			                            	</a>
+			                                <div class="or_search_row_company">
+			                                    <span>法定代表人：徐新建</span>
+			                                    <span>成立时间：1997-04-01</span>
+			                                    <span>注册资本： 80000.00万元人民币 </span>
+			                                   
+			                                </div>
+			                                <!-- 不同搜索类型显示不同信息 begin -->
+			                                <!-- type all -->
+			                                
+			                                	
+			                                	
+				                                	<div class="or_search_row_history">
+					                                	<span>股东：广发信德<em>投资管理有限公司</em></span>
+					                                </div>
+			                                	
+			                                
+			                                <!-- type 企业 -->
+			                                
+			                                 <!-- type 法人股东 -->
+			                                
+			                                
+			                                <!-- type 高管 -->
+			                                
+			                                
+			                                <!-- type 经营范围 -->
+			                                
+			                                
+			                                <!-- type 品牌 -->
+			                                
+			                                 <!-- 不同搜索类型显示不同信息 end -->
+			                                <!-- <div class="or_search_row_function">
+			                                	<span class="or_comment">评论（10）</span>
+			                                    <span class="or_browse">浏览（314）</span>
+			                                </div> -->
+			                            </div>
+			                            <div class="or_search_row_type">
+			                            	<p style="cursor:text;"><small class="searchbadge">在营</small></p>
+			                            </div>
+			                            <!-- <div class="sd_left_deep_follow">
+			                            	<div class="or_is_follow or_no_follow"></div>
+			                            </div> -->
+			                           
+			                        </div>
+			                    </div>
+	                    	
+			                    <div class="or_search_list">
+			                    	<div class="or_search_row or_row_w">
+			                        	<div class="or_search_row_img">
+			                                <div class="or_search_row_logo">
+			                                	
+			                                	
+			                                		<img src="http://static.shuidixy.com/images/none-img.png" /><span />
+			                                	
+			                                	
+			                                	
+			                                    
+			                                </div>
+			                            </div>
+			                            <div class="or_search_row_content">
+			                            	<a href="/company_info_76517522712739282696381559323306.html" target="_blank">
+			                            		云南城<em>投</em>置业股份<em>有限公司</em>
+			                            	</a>
+			                                <div class="or_search_row_company">
+			                                    <span>法定代表人：许雷</span>
+			                                    <span>成立时间：1997-04-21</span>
+			                                    <span>注册资本： 107045.79万元人民币 </span>
+			                                   
+			                                </div>
+			                                <!-- 不同搜索类型显示不同信息 begin -->
+			                                <!-- type all -->
+			                                
+			                                	
+			                                	
+				                                	<div class="or_search_row_history">
+					                                	<span>股东：中凡<em>投资管理有限公司</em></span>
+					                                </div>
+			                                	
+			                                
+			                                <!-- type 企业 -->
+			                                
+			                                 <!-- type 法人股东 -->
+			                                
+			                                
+			                                <!-- type 高管 -->
+			                                
+			                                
+			                                <!-- type 经营范围 -->
+			                                
+			                                
+			                                <!-- type 品牌 -->
+			                                
+			                                 <!-- 不同搜索类型显示不同信息 end -->
+			                                <!-- <div class="or_search_row_function">
+			                                	<span class="or_comment">评论（10）</span>
+			                                    <span class="or_browse">浏览（314）</span>
+			                                </div> -->
+			                            </div>
+			                            <div class="or_search_row_type">
+			                            	<p style="cursor:text;"><small class="searchbadge">在营</small></p>
+			                            </div>
+			                            <!-- <div class="sd_left_deep_follow">
+			                            	<div class="or_is_follow or_no_follow"></div>
+			                            </div> -->
+			                           
+			                        </div>
+			                    </div>
+	                    	
+			                    <div class="or_search_list">
+			                    	<div class="or_search_row or_row_w">
+			                        	<div class="or_search_row_img">
+			                                <div class="or_search_row_logo">
+			                                	
+			                                	
+			                                		<img src="http://static.shuidixy.com/images/none-img.png" /><span />
+			                                	
+			                                	
+			                                	
+			                                    
+			                                </div>
+			                            </div>
+			                            <div class="or_search_row_content">
+			                            	<a href="/company_info_53983222062071781026066039599973.html" target="_blank">
+			                            		<em>有</em>米科技股份<em>有限公司</em>
+			                            	</a>
+			                                <div class="or_search_row_company">
+			                                    <span>法定代表人：陈第</span>
+			                                    <span>成立时间：2010-04-21</span>
+			                                    <span>注册资本： 7819.86万 </span>
+			                                   
+			                                </div>
+			                                <!-- 不同搜索类型显示不同信息 begin -->
+			                                <!-- type all -->
+			                                
+			                                	
+			                                	
+				                                	<div class="or_search_row_history">
+					                                	<span>股东：广发信德<em>投资管理有限公司</em></span>
+					                                </div>
+			                                	
+			                                
+			                                <!-- type 企业 -->
+			                                
+			                                 <!-- type 法人股东 -->
+			                                
+			                                
+			                                <!-- type 高管 -->
+			                                
+			                                
+			                                <!-- type 经营范围 -->
+			                                
+			                                
+			                                <!-- type 品牌 -->
+			                                
+			                                 <!-- 不同搜索类型显示不同信息 end -->
+			                                <!-- <div class="or_search_row_function">
+			                                	<span class="or_comment">评论（10）</span>
+			                                    <span class="or_browse">浏览（314）</span>
+			                                </div> -->
+			                            </div>
+			                            <div class="or_search_row_type">
+			                            	<p style="cursor:text;"><small class="searchbadge">存续</small></p>
+			                            </div>
+			                            <!-- <div class="sd_left_deep_follow">
+			                            	<div class="or_is_follow or_no_follow"></div>
+			                            </div> -->
+			                           
+			                        </div>
+			                    </div>
+	                    	
+			                    <div class="or_search_list">
+			                    	<div class="or_search_row or_row_w">
+			                        	<div class="or_search_row_img">
+			                                <div class="or_search_row_logo">
+			                                	
+			                                	
+			                                		<img src="http://static.shuidixy.com/images/none-img.png" /><span />
+			                                	
+			                                	
+			                                	
+			                                    
+			                                </div>
+			                            </div>
+			                            <div class="or_search_row_content">
+			                            	<a href="/company_info_12390621897600165979463512084653.html" target="_blank">
+			                            		<em>上海</em>长赢<em>投资管理有限公司</em>
+			                            	</a>
+			                                <div class="or_search_row_company">
+			                                    <span>法定代表人：王羽丰</span>
+			                                    <span>成立时间：2008-01-17</span>
+			                                    <span>注册资本： 50.00万人民币 </span>
+			                                   
+			                                </div>
+			                                <!-- 不同搜索类型显示不同信息 begin -->
+			                                <!-- type all -->
+			                                
+			                                	
+			                                	
+				                                	<div class="or_search_row_history">
+					                                	<span>品牌：<em>投资</em>谱</span>
+					                                </div>
+			                                	
+			                                
+			                                <!-- type 企业 -->
+			                                
+			                                 <!-- type 法人股东 -->
+			                                
+			                                
+			                                <!-- type 高管 -->
+			                                
+			                                
+			                                <!-- type 经营范围 -->
+			                                
+			                                
+			                                <!-- type 品牌 -->
+			                                
+			                                 <!-- 不同搜索类型显示不同信息 end -->
+			                                <!-- <div class="or_search_row_function">
+			                                	<span class="or_comment">评论（10）</span>
+			                                    <span class="or_browse">浏览（314）</span>
+			                                </div> -->
+			                            </div>
+			                            <div class="or_search_row_type">
+			                            	<p style="cursor:text;"><small class="searchbadge">存续</small></p>
+			                            </div>
+			                            <!-- <div class="sd_left_deep_follow">
+			                            	<div class="or_is_follow or_no_follow"></div>
+			                            </div> -->
+			                           
+			                        </div>
+			                    </div>
+	                    	
+			                    <div class="or_search_list">
+			                    	<div class="or_search_row or_row_w">
+			                        	<div class="or_search_row_img">
+			                                <div class="or_search_row_logo">
+			                                	
+			                                	
+			                                		<img src="http://static.shuidixy.com/images/none-img.png" /><span />
+			                                	
+			                                	
+			                                	
+			                                    
+			                                </div>
+			                            </div>
+			                            <div class="or_search_row_content">
+			                            	<a href="/company_info_15938771225459248021519094671029.html" target="_blank">
+			                            		空间智慧装饰装修（北京）<em>有限公司</em>
+			                            	</a>
+			                                <div class="or_search_row_company">
+			                                    <span>法定代表人：陈炜</span>
+			                                    <span>成立时间：2010-09-10</span>
+			                                    <span>注册资本： 632.11 万元 人民币 </span>
+			                                   
+			                                </div>
+			                                <!-- 不同搜索类型显示不同信息 begin -->
+			                                <!-- type all -->
+			                                
+			                                	
+			                                	
+				                                	<div class="or_search_row_history">
+					                                	<span>股东：北京东丰一源<em>投资管理</em>中心（<em>有限</em>合伙）</span>
+					                                </div>
+			                                	
+			                                
+			                                <!-- type 企业 -->
+			                                
+			                                 <!-- type 法人股东 -->
+			                                
+			                                
+			                                <!-- type 高管 -->
+			                                
+			                                
+			                                <!-- type 经营范围 -->
+			                                
+			                                
+			                                <!-- type 品牌 -->
+			                                
+			                                 <!-- 不同搜索类型显示不同信息 end -->
+			                                <!-- <div class="or_search_row_function">
+			                                	<span class="or_comment">评论（10）</span>
+			                                    <span class="or_browse">浏览（314）</span>
+			                                </div> -->
+			                            </div>
+			                            <div class="or_search_row_type">
+			                            	<p style="cursor:text;"><small class="searchbadge">开业</small></p>
+			                            </div>
+			                            <!-- <div class="sd_left_deep_follow">
+			                            	<div class="or_is_follow or_no_follow"></div>
+			                            </div> -->
+			                           
+			                        </div>
+			                    </div>
+	                    	
+			                    <div class="or_search_list">
+			                    	<div class="or_search_row or_row_w">
+			                        	<div class="or_search_row_img">
+			                                <div class="or_search_row_logo">
+			                                	
+			                                	
+			                                		<img src="http://static.shuidixy.com/images/none-img.png" /><span />
+			                                	
+			                                	
+			                                	
+			                                    
+			                                </div>
+			                            </div>
+			                            <div class="or_search_row_content">
+			                            	<a href="/company_info_11448537606706501659821603097841.html" target="_blank">
+			                            		<em>上海</em>网鱼网络发展<em>有限公司</em>
+			                            	</a>
+			                                <div class="or_search_row_company">
+			                                    <span>法定代表人：黄锋</span>
+			                                    <span>成立时间：2004-03-12</span>
+			                                    <span>注册资本： 1000.00万人民币 </span>
+			                                   
+			                                </div>
+			                                <!-- 不同搜索类型显示不同信息 begin -->
+			                                <!-- type all -->
+			                                
+			                                	
+			                                	
+				                                	<div class="or_search_row_history">
+					                                	<span>股东：<em>上海</em>百正<em>投资管理有限公司</em></span>
+					                                </div>
+			                                	
+			                                
+			                                <!-- type 企业 -->
+			                                
+			                                 <!-- type 法人股东 -->
+			                                
+			                                
+			                                <!-- type 高管 -->
+			                                
+			                                
+			                                <!-- type 经营范围 -->
+			                                
+			                                
+			                                <!-- type 品牌 -->
+			                                
+			                                 <!-- 不同搜索类型显示不同信息 end -->
+			                                <!-- <div class="or_search_row_function">
+			                                	<span class="or_comment">评论（10）</span>
+			                                    <span class="or_browse">浏览（314）</span>
+			                                </div> -->
+			                            </div>
+			                            <div class="or_search_row_type">
+			                            	<p style="cursor:text;"><small class="searchbadge">存续</small></p>
+			                            </div>
+			                            <!-- <div class="sd_left_deep_follow">
+			                            	<div class="or_is_follow or_no_follow"></div>
+			                            </div> -->
+			                           
+			                        </div>
+			                    </div>
+	                    	
+			                    <div class="or_search_list">
+			                    	<div class="or_search_row or_row_w">
+			                        	<div class="or_search_row_img">
+			                                <div class="or_search_row_logo">
+			                                	
+			                                	
+			                                		<img src="http://static.shuidixy.com/images/none-img.png" /><span />
+			                                	
+			                                	
+			                                	
+			                                    
+			                                </div>
+			                            </div>
+			                            <div class="or_search_row_content">
+			                            	<a href="/company_info_55942911442336817805269639977980.html" target="_blank">
+			                            		北京盛景嘉成<em>投资管理有限公司</em>
+			                            	</a>
+			                                <div class="or_search_row_company">
+			                                    <span>法定代表人：彭志强</span>
+			                                    <span>成立时间：2011-01-27</span>
+			                                    <span>注册资本： 6114.54万元 </span>
+			                                   
+			                                </div>
+			                                <!-- 不同搜索类型显示不同信息 begin -->
+			                                <!-- type all -->
+			                                
+			                                	
+			                                	
+				                                	<div class="or_search_row_history">
+					                                	<span>股东：<em>上海上</em>古信息技术咨询<em>有限公司</em></span>
+					                                </div>
+			                                	
+			                                
+			                                <!-- type 企业 -->
+			                                
+			                                 <!-- type 法人股东 -->
+			                                
+			                                
+			                                <!-- type 高管 -->
+			                                
+			                                
+			                                <!-- type 经营范围 -->
+			                                
+			                                
+			                                <!-- type 品牌 -->
+			                                
+			                                 <!-- 不同搜索类型显示不同信息 end -->
+			                                <!-- <div class="or_search_row_function">
+			                                	<span class="or_comment">评论（10）</span>
+			                                    <span class="or_browse">浏览（314）</span>
+			                                </div> -->
+			                            </div>
+			                            <div class="or_search_row_type">
+			                            	<p style="cursor:text;"><small class="searchbadge">在营</small></p>
+			                            </div>
+			                            <!-- <div class="sd_left_deep_follow">
+			                            	<div class="or_is_follow or_no_follow"></div>
+			                            </div> -->
+			                           
+			                        </div>
+			                    </div>
+	                    	
+			                    <div class="or_search_list">
+			                    	<div class="or_search_row or_row_w">
+			                        	<div class="or_search_row_img">
+			                                <div class="or_search_row_logo">
+			                                	
+			                                	
+			                                		<img src="http://static.shuidixy.com/images/none-img.png" /><span />
+			                                	
+			                                	
+			                                	
+			                                    
+			                                </div>
+			                            </div>
+			                            <div class="or_search_row_content">
+			                            	<a href="/company_info_53267673818353967701153387532961.html" target="_blank">
+			                            		好<em>享</em>家舒适家居集成<em>有限公司</em>
+			                            	</a>
+			                                <div class="or_search_row_company">
+			                                    <span>法定代表人：陶永</span>
+			                                    <span>成立时间：2009-11-05</span>
+			                                    <span>注册资本： 6690.50万元人民币 </span>
+			                                   
+			                                </div>
+			                                <!-- 不同搜索类型显示不同信息 begin -->
+			                                <!-- type all -->
+			                                
+			                                	
+			                                	
+				                                	<div class="or_search_row_history">
+					                                	<span>股东：<em>上海</em>鑫沅股权<em>投资管理有限公司</em></span>
+					                                </div>
+			                                	
+			                                
+			                                <!-- type 企业 -->
+			                                
+			                                 <!-- type 法人股东 -->
+			                                
+			                                
+			                                <!-- type 高管 -->
+			                                
+			                                
+			                                <!-- type 经营范围 -->
+			                                
+			                                
+			                                <!-- type 品牌 -->
+			                                
+			                                 <!-- 不同搜索类型显示不同信息 end -->
+			                                <!-- <div class="or_search_row_function">
+			                                	<span class="or_comment">评论（10）</span>
+			                                    <span class="or_browse">浏览（314）</span>
+			                                </div> -->
+			                            </div>
+			                            <div class="or_search_row_type">
+			                            	<p style="cursor:text;"><small class="searchbadge">在业</small></p>
+			                            </div>
+			                            <!-- <div class="sd_left_deep_follow">
+			                            	<div class="or_is_follow or_no_follow"></div>
+			                            </div> -->
+			                           
+			                        </div>
+			                    </div>
+	                    	
+			                    <div class="or_search_list">
+			                    	<div class="or_search_row or_row_w">
+			                        	<div class="or_search_row_img">
+			                                <div class="or_search_row_logo">
+			                                	
+			                                	
+			                                		<img src="http://static.shuidixy.com/images/none-img.png" /><span />
+			                                	
+			                                	
+			                                	
+			                                    
+			                                </div>
+			                            </div>
+			                            <div class="or_search_row_content">
+			                            	<a href="/company_info_50729768784758051674092041797753.html" target="_blank">
+			                            		好<em>享</em>家舒适智能家居股份<em>有限公司</em>
+			                            	</a>
+			                                <div class="or_search_row_company">
+			                                    <span>法定代表人：陶永</span>
+			                                    <span>成立时间：2009-11-05</span>
+			                                    <span>注册资本： 6690.50万元人民币 </span>
+			                                   
+			                                </div>
+			                                <!-- 不同搜索类型显示不同信息 begin -->
+			                                <!-- type all -->
+			                                
+			                                	
+			                                	
+				                                	<div class="or_search_row_history">
+					                                	<span>股东：<em>上海</em>鑫沅股权<em>投资管理有限公司</em></span>
+					                                </div>
+			                                	
+			                                
+			                                <!-- type 企业 -->
+			                                
+			                                 <!-- type 法人股东 -->
+			                                
+			                                
+			                                <!-- type 高管 -->
+			                                
+			                                
+			                                <!-- type 经营范围 -->
+			                                
+			                                
+			                                <!-- type 品牌 -->
+			                                
+			                                 <!-- 不同搜索类型显示不同信息 end -->
+			                                <!-- <div class="or_search_row_function">
+			                                	<span class="or_comment">评论（10）</span>
+			                                    <span class="or_browse">浏览（314）</span>
+			                                </div> -->
+			                            </div>
+			                            <div class="or_search_row_type">
+			                            	<p style="cursor:text;"><small class="searchbadge">在业</small></p>
+			                            </div>
+			                            <!-- <div class="sd_left_deep_follow">
+			                            	<div class="or_is_follow or_no_follow"></div>
+			                            </div> -->
+			                           
+			                        </div>
+			                    </div>
+	                    	
+                    	
+                    	
+                    
+                </div>
+            </div> 
+            <!-- 分页插件 -->
+            
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="sd_left-padge pageCls">
+	
+		<p>
+			<input type="hidden" class="currentPageTotal" value="28" />
+			<input type="hidden" class="currentPagesize" value="10" />
+			<input type="hidden" class="showPreviousPageNum" value="5" />
+			<input type="hidden" class="showNextPageNum" value="5" />
+			
+		
+			
+				
+					
+						
+							<span class="current">
+								1
+							</span>
+						
+						
+					
+				
+					
+						
+						
+							<span onclick="searchFormSubmit(1,this)">
+								2
+							</span>
+						
+					
+				
+					
+						
+						
+							<span onclick="searchFormSubmit(2,this)">
+								3
+							</span>
+						
+					
+				
+			
+			
+				<span onclick="searchFormSubmit(1,this)">
+					下一页
+				</span>
+			
+			
+				跳到  <input type="text" id="pageNo" value="1" />  页
+			 	<a href="javascript:void(0);" onclick="goPage()">确定</a>
+			
+			
+		</p>
+	
+</div>
+
+
+<script type="text/javascript">
+	var functionName='searchFormSubmit';
+	function goPage(){
+		var page=document.getElementById("pageNo").value;
+		if(page==""){
+			return;
+		}
+		page=parseInt(page);
+		if(isNaN(page)){
+			return;
+		}
+		//输入的page数如果有误
+		if(page<=0){
+			page=0;
+			document.getElementById("pageNo").value=1;
+		}
+		var totalPages=parseInt('3');
+		if(page>totalPages){
+			page=totalPages;
+			document.getElementById("pageNo").value=page;
+		}
+		//npage从0开始,所以此处用page<=totalPages,而不是page<totalPages
+		if(page>0 && page<=totalPages){
+			page=page-1;
+		}
+		var fnc=eval(functionName);
+		new fnc(page);
+	}
+	
+</script>
+
+           
+        </div>
+        <div class="sd_right">
+        	<div class="sd_right_block">
+            	<h2>最近浏览</h2>
+                <div class="sd_right_a" id="recentLook">
+                </div>
+            </div>
+            <div class="sd_right_block" id="interestedCompany">
+            	<h2>可能感兴趣的企业</h2>
+            </div>
+            <div class="sd_right_block">
+            	<div class="sd_right_ewm"><img src="http://static.shuidixy.com/images/ewm-search.png" /></div>
+            </div>
+        </div>
+    </div>
+   	
+
+
+
+
+<script>
+	var basePath = '';
+	var common={companyDetailUrl:'/company_info_companyNo.html',staticResource:'http://static.shuidixy.com'};
+</script>
+<!-- footer -->
+<div class="sd_index_footer">
+     <div class="sd_company_container">
+     	<div class="sd_index_foot">
+             <div class="sd_index_foot1">
+                 <img src="http://static.shuidixy.com/images/small-logo.png" />
+                 <div class="sd_index_foot1_w">
+                     <a href="/toAboutUs">关于我们</a>
+                     <a href="/toContactUs">联系我们</a>
+                 </div>
+                 <div class="sd_index_foot1_w">
+                     <a href="/toUserPrivacy">隐私协议</a>
+                     <a href="/toReportCenter">举报中心</a>
+                 </div>
+                 <div class="sd_index_foot1_w">
+                     <a href="/toHelpCenter">帮助中心</a>
+                     <a href="/toFeedbackAdvise">意见反馈</a>
+                 </div>
+             </div>
+             <div class="sd_index_foot2">
+                 <h4>联系我们</h4>
+                 <p class="sd_p2">QQ1：3223469629</p>
+                 <p class="sd_p2">QQ2：3036379686</p>
+                 <p class="sd_p3">shuidi@pingansec.com</p>
+             </div>
+             <div class="sd_index_foot1 sd_index_foot3">
+                 <h4>数据来源</h4>
+                 <div class="sd_index_foot1_w sd_index_foot1_w0">
+                     <span>全国企业信用信息公示系统</span>
+                     <span>国家知识产权局</span>
+                 </div>
+                 <div class="sd_index_foot1_w sd_index_foot1_w0">
+                     <span>中国裁判文书网</span>
+                     <span>商标局</span>
+                 </div>
+                 <div class="sd_index_foot1_w sd_index_foot1_w0">
+                     <span>中国执行信息公开网</span>
+                     <span>版权局</span>
+                 </div>
+             </div>
+             <div class="sd_index_foot4">
+                 <h4>手机扫一扫</h4>
+                 <img height="76" width="76" src="http://static.shuidixy.com/images/ewm-gzh.png" />
+             </div>
+         </div>
+         <div class="sd_index_foot_dw">
+         	<p>联合运营单位<img src="http://static.shuidixy.com/images/360-logo.png" /><img src="http://static.shuidixy.com/images/xy-logo.png" /></p>
+         </div>
+         <div class="sd_index_foot_copy">
+         	<p>Copyright © 2015 水滴信用网shuidixy.com 保留所有权利  沪ICP备12039960号-5</p>
+         </div>
+     </div>
+</div>
+
+
+<!-- <script type="text/javascript">
+	/** cnzz统计  */
+	var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cspan id='cnzz_stat_icon_1256666129'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256666129' type='text/javascript'%3E%3C/script%3E"));
+</script> -->
+<script type="text/javascript" src="//s.union.360.cn/91760.js"></script>
+<script type="text/javascript" src="//static.pacra.cn/pa.js"></script>
+<script type="text/javascript">
+	var cnzz_protocol = (("https:" == document.location.protocol) ? " https://" : " http://");
+	document.write(unescape("%3Cspan style='display:none;' id='cnzz_stat_icon_1256666129'%3E%3C/span%3E%3Cscript src='" + cnzz_protocol + "s95.cnzz.com/z_stat.php%3Fid%3D1256666129 ' type='text/javascript'%3E%3C/script%3E"));
+</script>
+
+
+	
+
+
+
+
+<script>
+	var basePath = '';
+	var common={companyDetailUrl:'/company_info_companyNo.html',staticResource:'http://static.shuidixy.com'};
+</script>
+
+<div class="sd_menu_side">
+	 <a href="http://wpa.qq.com/msgrd?v=3&uin=3223469629&site=qq&menu=yes" target="_blank">
+		 <div class="flip-container" ontouchstart="this.classList.toggle('hover');">
+			<div class="flipper">
+				<div class="front pic"></div>
+				<div class="back">		
+				</div>
+			</div>
+		</div>
+	</a>
+	<a href="http://wpa.qq.com/msgrd?v=3&uin=3036379686&site=qq&menu=yes" target="_blank">
+		<div class="flip-container01" ontouchstart="this.classList.toggle('hover01');">
+			<div class="flipper01">
+				<div class="front01 pic01"></div>
+				<div class="back01">			
+				</div>
+			</div>
+		</div>
+	</a>
+	<a href="/toFeedbackAdvise">
+		<div class="flip-container02" ontouchstart="this.classList.toggle('hover02');">
+			<div class="flipper02">
+				<div class="front02 pic02"></div>
+				<div class="back02">				
+				</div>
+			</div>
+		</div>
+	</a>
+	<a href="#headerTurnTo" id="qqTurnToHeader">
+		<div class="flip-container03" ontouchstart="this.classList.toggle('hover03');">
+			<div class="flipper03">
+				<div class="front03 pic03"></div>
+				<div class="back03">				
+				</div>
+			</div>
+		</div>
+	</a>
+</div>
+
+<script type="text/javascript">
+	$(document).scroll(function(event){
+		var top=$(document).scrollTop();
+		if(top>100){
+			$("#qqTurnToHeader").show();
+		}
+		else{
+			$("#qqTurnToHeader").hide();
+		}
+	});
+</script>
+	 
+	<script type="text/javascript">
+		//浏览记录
+		var cfg = {
+			historyCookie : '',
+			metaCompanyDetailUrl : "/company_info_{0}.html",
+		};
+	</script>
+	<script type="text/javascript" src="http://static.shuidixy.com/js/ucs/search_result.js?v=20170126"></script>
+</body>
+</html>
